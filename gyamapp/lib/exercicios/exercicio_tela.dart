@@ -27,7 +27,6 @@ class ExercicioTela extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blueAccent,
       appBar: AppBar(
-        
         backgroundColor: Color(0xFF0A6D92),
         centerTitle: true,
         titleTextStyle: const TextStyle(color: Colors.white),
@@ -38,7 +37,6 @@ class ExercicioTela extends StatelessWidget {
           Text(exercicioModelo.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
           Text(exercicioModelo.treino, style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 15)),
         ],)
-        
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -59,7 +57,7 @@ class ExercicioTela extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {},
                       child: const Text(
-                        "Tira Fo",
+                        "Tira Foto",
                         style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                       ),
                     ),

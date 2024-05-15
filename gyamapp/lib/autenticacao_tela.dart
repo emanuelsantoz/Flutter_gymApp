@@ -13,6 +13,7 @@ class AutenticacaoTela extends StatefulWidget {
 // ignore: must_be_immutable
 class AutenticacaoStats extends State {
   bool queroEntrar = true;
+  final _fromKey =  GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +34,7 @@ class AutenticacaoStats extends State {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Form(
+                key: _fromKey,
                 child: Center(
                   child: SingleChildScrollView(
                       child: Column(
@@ -50,7 +52,19 @@ class AutenticacaoStats extends State {
                       ),
                       SizedBox(height: 32),
                       TextFormField(
-                        decoration: getAutenticationInputDecoraton("E-mail")
+                        decoration: getAutenticationInputDecoraton("E-mail"),
+                        validator: (String? value) {
+                          if(value == null){
+                            return "O e-mail não pode ser vazio";
+                          }
+                          if(value.length < 5){
+                            return "O e-mail é muito curto";
+                          }
+                          if(!value.contains("@")){
+                            return "O e-mail é invalido";
+                          }
+                          return null;
+                        },
                       ),
                       SizedBox(height: 8),
                       TextFormField(
@@ -76,7 +90,9 @@ class AutenticacaoStats extends State {
                           )),
                       SizedBox(height: 16),
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            botaoPrincipal();
+                          },
                           child: Text((queroEntrar) ? "Entrar" : "Cadastrar")),
                       Divider(),
                       TextButton(
@@ -96,5 +112,13 @@ class AutenticacaoStats extends State {
             )
           ],
         ));
+  }
+
+  botaoPrincipal(){
+    if(_fromKey.currentState!.validate()){
+      print("Form Invalido");
+    } else {
+      print("Form inválido");
+    }
   }
 }
