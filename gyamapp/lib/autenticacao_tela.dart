@@ -22,7 +22,7 @@ class AutenticacaoStats extends State {
         body: Stack(
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomCenter,
@@ -50,7 +50,7 @@ class AutenticacaoStats extends State {
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
-                      SizedBox(height: 32),
+                      const SizedBox(height: 32),
                       TextFormField(
                         decoration: getAutenticationInputDecoraton("E-mail"),
                         validator: (String? value) {
@@ -66,7 +66,7 @@ class AutenticacaoStats extends State {
                           return null;
                         },
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       TextFormField(
                         decoration: getAutenticationInputDecoraton("Senha"),
                         obscureText: true,
@@ -80,7 +80,7 @@ class AutenticacaoStats extends State {
                                 decoration: getAutenticationInputDecoraton("Confirme senha"),
                                 obscureText: true,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 8
                               ),
                               TextFormField(
@@ -88,13 +88,32 @@ class AutenticacaoStats extends State {
                               ),
                             ],
                           )),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       ElevatedButton(
+
+                                                style: ButtonStyle(backgroundColor: WidgetStateColor.resolveWith((states) {
+                                                  return  MinhasCores.azulTopoGradiente;
+                                                }
+                                                )),
+                        // MaterialStateProperty
+                        //                 .resolveWith<Color?>((states) {
+                        //               if (states
+                        //                   .contains(MaterialState.pressed)) {
+                        //                 return Theme.of(context).primaryColor;
+                        //               }
+                        //               return Colors.green;
+                        //             }), minimumSize:
+                        //                 MaterialStateProperty.resolveWith(
+                        //                     (states) {
+                        //               return const Size(50, 50);
+                        //             })),
+
                           onPressed: () {
                             botaoPrincipal();
                           },
-                          child: Text((queroEntrar) ? "Entrar" : "Cadastrar")),
-                      Divider(),
+                          child: Text( style: TextStyle(color: Colors.white),
+                            (queroEntrar) ? "Entrar" : "Cadastrar")),
+                      const Divider(),
                       TextButton(
                           onPressed: () {
                             setState(() {
@@ -102,7 +121,8 @@ class AutenticacaoStats extends State {
                               print(queroEntrar);
                             });
                           },
-                          child: Text((queroEntrar)
+                          child: Text(style: TextStyle(color: Colors.white),
+                            (queroEntrar)
                               ? "Ainda não tenho uma conta? Cadastre-se"
                               : "Já tem conta? Entre!")),
                     ],

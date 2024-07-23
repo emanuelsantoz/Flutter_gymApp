@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gyamapp/autenticacao_tela.dart';
-import 'package:gyamapp/exercicios/exercicio_tela.dart';
-
 
 void main(){
   runApp( const MyFirstTela());
