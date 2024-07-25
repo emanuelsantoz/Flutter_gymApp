@@ -15,7 +15,7 @@ class AutenticacaoTela extends StatefulWidget {
 
 // ignore: must_be_immutable
 class AutenticacaoStats extends State {
-  bool queroEntrar = false;
+  bool queroEntrar = true;
   final _fromKey = GlobalKey<FormState>();
 
   final TextEditingController _nomeController = TextEditingController();
@@ -93,7 +93,7 @@ class AutenticacaoStats extends State {
                       ),
                       const SizedBox(height: 8),
                       Visibility(
-                          visible: queroEntrar,
+                          visible: !queroEntrar,
                           child: Column(
                             children: [
                               TextFormField(
@@ -153,7 +153,7 @@ class AutenticacaoStats extends State {
 
     if (_fromKey.currentState!.validate()) {
       print("Form Valido");
-      if (queroEntrar) {
+      if (!queroEntrar) {
         print(
             "${_nomeController.text}, ${_emailController.text}, ${_senhaController.text}");
         _autenticacaoServico
@@ -170,7 +170,15 @@ class AutenticacaoStats extends State {
                 isError: false);
           }
         });
-      } else {}
+      } else {
+        _autenticacaoServico.LoginUsuario(email: email, senha: senha)
+            .then((String? error) {
+          if (error != null) {
+            // Mostrar erro login
+            mostrarSnackBar(context: context, texto: error);
+          }
+        });
+      }
     } else {
       print("Form Inválido");
     }

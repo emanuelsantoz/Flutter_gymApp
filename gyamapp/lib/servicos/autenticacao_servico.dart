@@ -21,4 +21,18 @@ class AutenticacaoServico {
     }
     return null;
   }
+
+  Future<String?> LoginUsuario({required email, required senha}) async {
+    try {
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: senha);
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
+  }
+
+  Future<void> deslogar() async {
+    return _firebaseAuth.signOut();
+  }
 }
